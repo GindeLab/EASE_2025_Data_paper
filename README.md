@@ -116,6 +116,24 @@ These projects represent older or retired components and initiatives.
 * **User Experience Design Graveyard:** Archive of older user experience design projects.
 * **Data Platform and Tools Graveyard:** Archive of older data platform and tool projects.
 * 
+
+
+### 📜 Script Overview
+
+This table summarizes each script, grouped by category, with its input source and resulting output destination.
+
+| **Category**       | **Script Name**                       | **Input Source**                                    | **Output Destination**                                                 |
+|--------------------|----------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
+| 🐛 Meta Data        | `Get_meta_data.py`                 |(hard-coded Bugzilla ID range)            | CSV                      |
+| 🐛 Meta Data        | `CSV_Raw_meta_data.py`                 | CSV                   | CSV                                               |
+| 🐛 Meta Data        | `Mongo_Meta_Data_with_proxies.py`      |(hard-coded Bugzilla ID range) + Proxy List                      | MongoDB                      |
+| 🐛 Meta Data        | `Mongo_get_meta.py`                    |(hard-coded Bugzilla ID range)            | MongoDB                    |
+| 💬 Comments Data    | `Bug_comment.py`                       | CSV                | CSV  |
+| 👤 Contributor Info | `CSV_Reputation.py`                    | CSV      | MongoDB                                 |
+| 👤 Contributor Info | `Mongo_DB_reputation.py`               | MongoDB               | MongoDB                                |
+| 📊 Visualizations   | `Visualizations.py`                               | MongoDB               | Visualizations (various formats)            |
+
+
 ## Data Files
 
 ### `bugs-2025-02-23.csv`
