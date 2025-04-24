@@ -2,6 +2,17 @@
 
 This repository contains code for your EASE 2025 paper and data for analyzing bug reports and developer reputation in open-source projects. Below is a detailed description of each file and its purpose:
 
+## Project Structure
+
+The project is organized into the following directories:
+
+- `Meta_Data_Gather/`: Scripts for collecting bug report metadata
+- `Contributor_information_Gather/`: Scripts for gathering contributor information
+- `Comments_Data_Gather/`: Scripts for collecting and analyzing bug comments
+- `Scoring_reports/`: Scripts for scoring and analyzing bug reports
+- `Visualize_Data/`: Scripts for data visualization
+- `Sample_Dataset/`: Contains sample datasets and raw data
+
 ## Key Mozilla Projects Summary
 
 Here is a summary of some core and prominent Mozilla projects:
@@ -115,35 +126,44 @@ These projects represent older or retired components and initiatives.
 * **Firefox for FireTV Graveyard:** Archive of the Firefox version for Amazon Fire TV.
 * **User Experience Design Graveyard:** Archive of older user experience design projects.
 * **Data Platform and Tools Graveyard:** Archive of older data platform and tool projects.
-* 
 
-
-### 📜 Script Overview
+## Script Overview
 
 This table summarizes each script, grouped by category, with its input source and resulting output destination.
 
 | **Category**       | **Script Name**                       | **Input Source**                                    | **Output Destination**                                                 |
 |--------------------|----------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
-| 🐛 Meta Data        | `Get_meta_data.py`                 |(hard-coded Bugzilla ID range)            | CSV                      |
-| 🐛 Meta Data        | `CSV_Raw_meta_data.py`                 | CSV                   | CSV                                               |
-| 🐛 Meta Data        | `Mongo_Meta_Data_with_proxies.py`      |(hard-coded Bugzilla ID range) + Proxy List                      | MongoDB                      |
-| 🐛 Meta Data        | `Mongo_get_meta.py`                    |(hard-coded Bugzilla ID range)            | MongoDB                    |
-| 💬 Comments Data    | `Bug_comment.py`                       | CSV                | CSV  |
-| 👤 Contributor Info | `CSV_Reputation.py`                    | CSV      | MongoDB                                 |
-| 👤 Contributor Info | `Mongo_DB_reputation.py`               | MongoDB               | MongoDB                                |
-| 📊 Visualizations   | `Visualizations.py`                               | MongoDB               | Visualizations (various formats)            |
-
+| 🐛 Meta Data        | `Meta_Data_Gather/Get_meta_data.py`                 |(hard-coded Bugzilla ID range)            | CSV                      |
+| 🐛 Meta Data        | `Meta_Data_Gather/CSV_Raw_meta_data.py`                 | CSV                   | CSV                                               |
+| 🐛 Meta Data        | `Meta_Data_Gather/Mongo_Meta_Data_with_proxies.py`      |(hard-coded Bugzilla ID range) + Proxy List                      | MongoDB                      |
+| 🐛 Meta Data        | `Meta_Data_Gather/Mongo_get_meta.py`                    |(hard-coded Bugzilla ID range)            | MongoDB                    |
+| 💬 Comments Data    | `Comments_Data_Gather/Bug_comment.py`                       | CSV                | CSV  |
+| 👤 Contributor Info | `Contributor_information_Gather/CSV_Reputation.py`                    | CSV      | MongoDB                                 |
+| 👤 Contributor Info | `Contributor_information_Gather/Mongo_DB_reputation.py`               | MongoDB               | MongoDB                                |
+| 📊 Visualizations   | `Visualize_Data/Visualizations.py`                               | MongoDB               | Visualizations (various formats)            |
 
 ## Data Files
 
-### `bugs-2025-02-23.csv`
-- **Purpose**: Main dataset containing raw bug reports
-- **Data Content**: Contains bug report information including bug IDs, descriptions, status, and other metadata
-- **Format**: CSV file with multiple columns of bug report attributes
+### `Sample_Dataset/bugs-2025-02-23.csv`
+- **Purpose**: Main dataset containing raw bug reports from Mozilla projects
+- **Data Content**: Contains comprehensive bug report information including:
+  - Bug IDs and tracking numbers
+  - Report descriptions and summaries
+  - Status and resolution information
+  - Priority and severity levels
+  - Component and product information
+  - Creation and modification dates
+  - Reporter and assignee details
+  - Operating system and platform information
+- **Format**: CSV file with UTF-8 encoding
+- **Size**: Approximately 1.6MB
+- **Last Updated**: February 23, 2025
+- **Source**: Mozilla Bugzilla (bugzilla.mozilla.org)
+- **Usage**: This dataset serves as the primary input for all analysis scripts in the project
 
 ## Core Analysis Scripts
 
-### `CTQRS_Scoring_Code.py`
+### `Scoring_reports/CTQRS_Scoring_Code.py`
 - **Purpose**: Implements the CTQRS (Completeness, Traceability, Quality, Reproducibility, and Specificity) scoring system for bug reports
 - **Key Features**:
   - Analyzes bug report text quality using NLP techniques
@@ -161,7 +181,7 @@ This table summarizes each script, grouped by category, with its input source an
   keywords={Industries;Computer bugs;Inspection;Predictive models;Quality assessment;Mobile applications;Testing;Crowdsourced testing;Desirable properties;Quality indicators;dependency parsing;Test report quality},
   doi={10.1109/DSA56465.2022.00014}
 
-### `reputation.py` and `local_reputation_.py`
+### `Contributor_information_Gather/CSV_Reputation.py` and `Contributor_information_Gather/Mongo_DB_reputation.py`
 - **Purpose**: Analyzes developer reputation and contribution history
 - **Key Features**:
   - Fetches user details from bug tracking systems
@@ -169,7 +189,7 @@ This table summarizes each script, grouped by category, with its input source an
   - Connects to MongoDB for data storage
   - Analyzes developer activity and contribution patterns
 
-### `Get_meta_data.py` and `2_get_meta.py`
+### `Meta_Data_Gather/Get_meta_data.py` and `Meta_Data_Gather/Mongo_get_meta.py`
 - **Purpose**: Retrieves metadata about bug reports from bugzilla
 - **Key Features**:
   - Fetches bug details from Bugzilla
@@ -177,38 +197,22 @@ This table summarizes each script, grouped by category, with its input source an
   - Extracts bug comments and author information
   - Stores data in MongoDB
 
-### `Only_meta_data.py`
-- **Purpose**: Focused version of metadata extraction
-- **Key Features**:
-  - Extracts specific metadata fields from bug reports
-  - Optimized for targeted data collection
-
 ## Supporting Scripts
 
-### `Authors.py`
-- **Purpose**: Analyzes author information and contribution patterns
-- **Key Features**:
-  - Processes author-related data
-  - Analyzes developer participation in bug reports
-
-### `Bug_comment.py`
+### `Comments_Data_Gather/Bug_comment.py`
 - **Purpose**:  Fetches and Analyzes bug report comments
 - **Key Features**:
   - Processes and analyzes comment content
   - Extracts meaningful information from discussion threads
 
-### `proxies.py` and `proxy.py`
+### `Meta_Data_Gather/proxy.py` and `Meta_Data_Gather/proxies_list.txt`
 - **Purpose**: Manages proxy connections for web scraping
 - **Key Features**:
   - Implements proxy rotation
   - Handles proxy authentication and management
   - Used for rate-limited API calls
 
-### `proxies_list.txt`
-- **Purpose**: Contains list of proxy servers
-- **Format**: Text file with proxy server addresses and credentials
-
-### `vis.py`
+### `Visualize_Data/Visualizations.py`
 - **Purpose**: Data visualization scripts
 - **Key Features**:
   - Creates visualizations of analysis results
@@ -232,8 +236,8 @@ This table summarizes each script, grouped by category, with its input source an
 4. Check the output files for results
 
 ## Data Flow
-1. Raw bug reports are collected from `bugs-2025-02-23.csv`
-2. Metadata is extracted using `Get_meta_data.py`
-3. Bug reports are scored using `CTQRS_Scoring_Code.py`
-4. Developer reputation is analyzed using `reputation.py`
-5. Results are stored in MongoDB and can be visualized using `vis.py`
+1. Raw bug reports are collected from `Sample_Dataset/bugs-2025-02-23.csv`
+2. Metadata is extracted using scripts in `Meta_Data_Gather/`
+3. Bug reports are scored using `Scoring_reports/CTQRS_Scoring_Code.py`
+4. Developer reputation is analyzed using scripts in `Contributor_information_Gather/`
+5. Results are stored in MongoDB and can be visualized using `Visualize_Data/Visualizations.py`
