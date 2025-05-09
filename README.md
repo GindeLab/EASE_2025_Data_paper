@@ -13,6 +13,22 @@ The project is organized into the following directories:
 - `Visualize_Data/`: Scripts for data visualization
 - `Sample_Dataset/`: Contains sample datasets and raw data
 
+## Script Overview
+
+This table summarizes each script, grouped by category, with its input source and resulting output destination.
+
+| **Category**       | **Script Name**                       | **Input Source**                                    | **Output Destination**                                                 |
+|--------------------|----------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
+| 🐛 Meta Data        | `Meta_Data_Gather/Get_meta_data.py`                 |(hard-coded Bugzilla ID range)            | CSV                      |
+| 🐛 Meta Data        | `Meta_Data_Gather/CSV_Raw_meta_data.py`                 | CSV                   | CSV                                               |
+| 🐛 Meta Data        | `Meta_Data_Gather/Mongo_Meta_Data_with_proxies.py`      |(hard-coded Bugzilla ID range) + Proxy List                      | MongoDB                      |
+| 🐛 Meta Data        | `Meta_Data_Gather/Mongo_get_meta.py`                    |(hard-coded Bugzilla ID range)            | MongoDB                    |
+| 💬 Comments Data    | `Comments_Data_Gather/Bug_comment.py`                       | CSV                | CSV  |
+| 👤 Contributor Info | `Contributor_information_Gather/CSV_Reputation.py`                    | CSV      | MongoDB                                 |
+| 👤 Contributor Info | `Contributor_information_Gather/Mongo_DB_reputation.py`               | MongoDB               | MongoDB                                |
+| 📊 Visualizations   | `Visualize_Data/Visualizations.py`                               | MongoDB               | Visualizations (various formats)            |
+
+
 ## Key Mozilla Projects Summary
 
 Here is a summary of some core and prominent Mozilla projects:
@@ -127,20 +143,6 @@ These projects represent older or retired components and initiatives.
 * **User Experience Design Graveyard:** Archive of older user experience design projects.
 * **Data Platform and Tools Graveyard:** Archive of older data platform and tool projects.
 
-## Script Overview
-
-This table summarizes each script, grouped by category, with its input source and resulting output destination.
-
-| **Category**       | **Script Name**                       | **Input Source**                                    | **Output Destination**                                                 |
-|--------------------|----------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
-| 🐛 Meta Data        | `Meta_Data_Gather/Get_meta_data.py`                 |(hard-coded Bugzilla ID range)            | CSV                      |
-| 🐛 Meta Data        | `Meta_Data_Gather/CSV_Raw_meta_data.py`                 | CSV                   | CSV                                               |
-| 🐛 Meta Data        | `Meta_Data_Gather/Mongo_Meta_Data_with_proxies.py`      |(hard-coded Bugzilla ID range) + Proxy List                      | MongoDB                      |
-| 🐛 Meta Data        | `Meta_Data_Gather/Mongo_get_meta.py`                    |(hard-coded Bugzilla ID range)            | MongoDB                    |
-| 💬 Comments Data    | `Comments_Data_Gather/Bug_comment.py`                       | CSV                | CSV  |
-| 👤 Contributor Info | `Contributor_information_Gather/CSV_Reputation.py`                    | CSV      | MongoDB                                 |
-| 👤 Contributor Info | `Contributor_information_Gather/Mongo_DB_reputation.py`               | MongoDB               | MongoDB                                |
-| 📊 Visualizations   | `Visualize_Data/Visualizations.py`                               | MongoDB               | Visualizations (various formats)            |
 
 ## Data Files
 
